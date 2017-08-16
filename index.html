@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+    
+        <title>Playground</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+        
+        <link href="C:\Users\Mr_Ad\Desktop\CodeStuffs\Projects\jQuery\jquery-ui">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+
+
+
+        
+        
+    
+        
+        <style type="text/css">
+            
+            body {
+                font-family: 'Quicksand', sans-serif;
+
+                color:#eee;
+            }
+            
+            html { 
+  background: url(sebastian-engler-65104.jpg) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+            
+            .container {
+                width:100%;
+            }
+            
+            label {
+                display:block;
+                margin:0 auto;
+                text-align:center;
+                font-size:150%;
+            }
+        
+            input {
+                width:100%;
+                margin:0.5em auto;
+                padding:15px;
+                border-radius:5px;
+                border:none;
+                font-size: 100%;
+                margin-left:-1em;
+            }
+            
+            #form {
+                width:90%;
+                clear: both;
+                margin:0 auto;
+                background-color:#444;
+                border-radius:10px;
+                padding:0em 2em 3em 2em;
+            }
+            
+            
+            #button {
+                background-color:#55BDA2;
+                width:100%;
+                margin:0 auto;
+                font-family:'Josefin Sans', sans-serif;
+                font-weight:800;
+                color:#fff;
+            }
+            
+            #btnDiv {
+                width:50%;
+                margin:0 auto;
+            }
+            
+            #errorMessage {
+                font-size: 100%;
+                color:lightcoral;
+                margin:0 auto;
+            }
+            
+            #successDiv {
+                font-size: 100%;
+                color:lightgreen;
+                display:none;
+                text-align:center;
+            }
+            
+            #header {
+                text-align:center;
+                font-weight:800;
+                font-size:500%;
+            }
+            
+            #underHeader {
+                text-align:center;
+            }
+            
+            #topRow {
+                width:100%;
+                text-align:right;
+            }
+            
+            #signUp {
+                text-decoration:none;
+                color:#fff;
+                font-weight:800;
+                margin-right:1em;
+                background-color:#333;
+                border-radius:5px;
+                
+            }
+            
+            #signUp:hover {
+                text-shadow:2px 2px 9px #eee;
+                
+            }
+            
+            .clear {clear:both;}
+            
+            #rememberMe {
+                display:inline-block;
+                color:lightblue;
+            }
+            
+            #radio {
+                display:inline-block;
+                width:20%;
+            }
+            
+            #forgotten {
+                text-decoration:none;
+                color:lightblue;
+            }
+            .forgotten {
+                width:100%;
+                text-align:center;
+            }
+            
+            #logo { 
+                float:left;
+                width:5%;
+            }
+            
+            #copy {
+                width:100%;
+                font-size:70%;
+                position:fixed;
+                bottom:0px;
+                margin:auto;
+            }
+            
+        </style>
+    
+    </head>
+
+
+    <body>
+        <div id="topRow">
+            <a href="#"><img id="logo" src="Capture.PNG"></a>
+        <a href="#" id="signUp">Sign Up</a>
+        </div>
+        <div class="clear"></div>
+        
+        <div id="container">
+            
+            
+            
+            
+            
+            <div id="form">
+                
+                <h1 id="header">Login</h1>
+                <h5 id="underHeader">Or sign up in the top right to find the best bookings.</h5>
+
+                <input type="text" name="email" id="email" placeholder="Email">
+
+
+                <input type="password" name="password" id="password" placeholder="Password">
+                               
+                <input id="radio" type="checkbox" value="rememberMe"><p id="rememberMe">Remember me?</p>
+                <div id="btnDiv">
+                    <input type="button" id="button" value="Login">
+                </div>
+                <a id="forgotten" href="#"><p class="forgotten">Forgot your password?</p></a>
+            </div>
+          
+        </div>
+        
+        <div id="errorMessage"></div>
+            
+        <div id="successDiv"><p>This form is for demo purposes only.<br>Thank you for visiting.</p></div>
+            
+        <p id="copy">&#169;AdamTheWizard</p>
+        
+        <script type="text/javascript">
+            
+            function isEmail(email) {
+                
+            var regex = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+                
+            return regex.test(email);
+                
+            };
+          
+            $("#button").click(function() {
+                
+                var errorMessage = "";
+                
+                var fieldsEmpty = "";
+                
+                if ($("#email").val() == ""){   
+                    fieldsEmpty += "<br>Email";
+                    
+                }
+                if ($("#password").val() == ""){   
+                    fieldsEmpty += "<br>Password";
+                    
+                }
+                if (fieldsEmpty != ""){   
+                    errorMessage += "<p>The following field(s) are empty:" + fieldsEmpty;
+                    
+                }
+                if (isEmail($("#email").val()) == false && $("#email").val() !== ""){
+                   
+                    errorMessage += "<p>Your Email address is not valid.</p>";
+               }
+                if (errorMessage != "") {
+                    $("#errorMessage").html(errorMessage);
+                    
+                } else {
+                    $("#successDiv").fadeIn(3000);   
+                    $("#errorMessage").fadeOut(3000);
+                    $("#button").fadeOut(2000);
+                }
+            });
+            
+            function sizing() {
+                
+                if ($(window).width() < 768) {
+                    
+                    $("#form").css("width", "80%");
+                    $("#logo").css("width", "20%");
+                    
+                } else if ($(window).width() > 768 && $(window).width() < 992) {
+                    $("#logo").css("width", "10%");
+                    $("#form").css("width", "50%");
+                } else {
+                    $("#logo").css("width", "5%");
+                    $("#form").css("width", "30%");
+                }
+                
+                
+            }
+                
+            
+            $(window).resize(function() {
+                
+                sizing();
+                
+            });
+            
+            $(document).ready(function() {
+                
+                sizing();
+            })
+            
+                      
+        </script>
+    
+    
+    </body>
+    
+
+
+</html>
