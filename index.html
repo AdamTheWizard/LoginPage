@@ -5,13 +5,16 @@
     <head>
     
         <title>Playground</title>
+        
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
+        
         
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
         
         <link href="C:\Users\Mr_Ad\Desktop\CodeStuffs\Projects\jQuery\jquery-ui">
         <link href="https://fonts.googleapis.com/css?family=Quicksand" rel="stylesheet">
+        <script src="https://use.fontawesome.com/afac56adce.js"></script>
 
 
 
@@ -23,12 +26,12 @@
             
             body {
                 font-family: 'Quicksand', sans-serif;
-
+                overflow-x: hidden;
                 color:#eee;
             }
             
             html { 
-  background: url("sebastian-engler-65104.jpg") no-repeat center center fixed; 
+  background: url(veeterzy-60200.jpg) no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
@@ -60,9 +63,9 @@
                 width:90%;
                 clear: both;
                 margin:0 auto;
-                background-color:#444;
                 border-radius:10px;
                 padding:0em 2em 3em 2em;
+                background-color:#444;
             }
             
             
@@ -87,20 +90,24 @@
             }
             
             #successDiv {
-                font-size: 100%;
+                font-size: 400%;
                 color:lightgreen;
                 display:none;
                 text-align:center;
+                background-color:#444;
+                border-radius:10px;
             }
             
             #header {
                 text-align:center;
                 font-weight:800;
                 font-size:500%;
+                
             }
             
             #underHeader {
                 text-align:center;
+                font-weight:800;
             }
             
             #topRow {
@@ -113,7 +120,6 @@
                 color:#fff;
                 font-weight:800;
                 margin-right:1em;
-                background-color:#333;
                 border-radius:5px;
                 
             }
@@ -152,11 +158,26 @@
             #copy {
                 width:100%;
                 font-size:70%;
-                position:fixed;
-                bottom:0px;
-                margin:auto;
+                position:relative;
+                text-align:center;
+                margin-top:4em;
             }
             
+            .fa {
+                color:white;
+                font-size: 100%;
+            }
+            
+            #siteName {
+                float:left;
+                display:inline;
+                padding:0;
+                margin:0;
+            }
+            
+            #dotcom {
+                font-size:60%;
+            }
         </style>
     
     </head>
@@ -164,7 +185,8 @@
 
     <body>
         <div id="topRow">
-            <a href="#"><img id="logo" src="Capture.PNG"></a>
+            <h3 id="siteName"><i class="fa fa-superpowers" aria-hidden="true"></i> Bookem<span id="dotcom">.com</span></h3>
+
         <a href="#" id="signUp">Sign Up</a>
         </div>
         <div class="clear"></div>
@@ -193,9 +215,7 @@
             </div>
           
         </div>
-        
-        <div id="errorMessage"></div>
-            
+                    
         <div id="successDiv"><p>This form is for demo purposes only.<br>Thank you for visiting.</p></div>
             
         <p id="copy">&#169;AdamTheWizard</p>
@@ -213,16 +233,19 @@
             $("#button").click(function() {
                 
                 var errorMessage = "";
-                
                 var fieldsEmpty = "";
                 
                 if ($("#email").val() == ""){   
-                    fieldsEmpty += "<br>Email";
+                    
+                    $("#email").css("background-color", "#f44242");
+                    $("#email").css("color", "#eee");
+                    errorMessage = "1";
                     
                 }
                 if ($("#password").val() == ""){   
-                    fieldsEmpty += "<br>Password";
-                    
+                    $("#password").css("background-color", "#f44242");
+                    $("#password").css("color", "#eee");
+                    errorMessage = "2";
                 }
                 if (fieldsEmpty != ""){   
                     errorMessage += "<p>The following field(s) are empty:" + fieldsEmpty;
@@ -230,15 +253,18 @@
                 }
                 if (isEmail($("#email").val()) == false && $("#email").val() !== ""){
                    
-                    errorMessage += "<p>Your Email address is not valid.</p>";
+                    $("#email").val("Invalid email address");
                }
                 if (errorMessage != "") {
                     $("#errorMessage").html(errorMessage);
                     
                 } else {
+                    
+                    $("#email").css("background-color", "#90EE90");
+                    $("#password").css("background-color", "#90EE90");
+                    $("#form").fadeOut(2000, function() {
                     $("#successDiv").fadeIn(3000);   
-                    $("#errorMessage").fadeOut(3000);
-                    $("#button").fadeOut(2000);
+                    });
                 }
             });
             
