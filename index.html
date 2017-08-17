@@ -163,7 +163,7 @@
                 margin-top:4em;
             }
             
-            .fa {
+            #logoIcon {
                 color:white;
                 font-size: 100%;
             }
@@ -177,6 +177,19 @@
             
             #dotcom {
                 font-size:60%;
+            } 
+            
+            .speakerBtnClass {
+                position: relative;
+                width:100%;
+                font-size:200%;
+                color:#fff;
+                text-align:center;
+                cursor:pointer;
+            }
+            
+            #speakerBtn2 {
+                display:none;
             }
         </style>
     
@@ -184,8 +197,10 @@
 
 
     <body>
+        
+        
         <div id="topRow">
-            <h3 id="siteName"><i class="fa fa-superpowers" aria-hidden="true"></i> Bookem<span id="dotcom">.com</span></h3>
+            <h3 id="siteName"><i id="logoIcon" class="fa fa-superpowers" aria-hidden="true"></i> Bookem<span id="dotcom">.com</span></h3>
 
         <a href="#" id="signUp">Sign Up</a>
         </div>
@@ -200,6 +215,7 @@
             <div id="form">
                 
                 <h1 id="header">Login</h1>
+                
                 <h5 id="underHeader">Or sign up in the top right to find the best bookings.</h5>
 
                 <input type="text" name="email" id="email" placeholder="Email">
@@ -212,6 +228,8 @@
                     <input type="button" id="button" value="Login">
                 </div>
                 <a id="forgotten" href="#"><p class="forgotten">Forgot your password?</p></a>
+                <i id="speakerBtn" class="speakerBtnClass fa fa-volume-off" aria-hidden="true"></i>
+                
             </div>
           
         </div>
@@ -219,6 +237,14 @@
         <div id="successDiv"><p>This form is for demo purposes only.<br>Thank you for visiting.</p></div>
             
         <p id="copy">&#169;AdamTheWizard</p>
+        
+        
+
+        
+        
+        
+        
+        
         
         <script type="text/javascript">
             
@@ -286,9 +312,8 @@
                 
             }
                 
-            
             $(window).resize(function() {
-                
+                 
                 sizing();
                 
             });
@@ -296,8 +321,28 @@
             $(document).ready(function() {
                 
                 sizing();
-            })
+            });
             
+            
+            $(".fa-volume-off").click(function() {
+                
+                if ($("#speakerBtn").hasClass("fa-volume-off")){
+            
+                $("#speakerBtn").toggleClass("fa-volume-off fa-volume-up");
+                
+                $("#container").after("<audio id='music' autoplay>" + "<source src='rainforest_ambience-GlorySunz-1938133500.mp3' type='audio/mpeg'>" + "</audio>");
+                } else {
+                    
+                    $(".fa-volume-up").toggleClass("fa-volume-up fa-volume-off");
+                
+                $("#music").remove(); 
+                }
+
+                });
+            
+                
+                   
+                            
                       
         </script>
     
